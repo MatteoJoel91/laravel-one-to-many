@@ -17,6 +17,16 @@
           </select>
         </div>
 
+        @foreach ($tags as $tag)
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                {{$tag->name}}
+              </label>
+            </div>
+        @endforeach
+        
+
         <div class="mb-3">
           <label for="title" class="form-label">Titolo</label>
           <input type="title" class="form-control" id="title" name="title" value="{{old('title', '')}}">

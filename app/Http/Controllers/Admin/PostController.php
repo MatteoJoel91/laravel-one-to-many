@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 
 // per far funzionare la Str in store e update
@@ -36,7 +37,9 @@ class PostController extends Controller
 
         $categories = Category::all();
 
-        return view('admin.post.create', compact('categories'));
+        $tags = Tag::all();
+
+        return view('admin.post.create', compact('categories', 'tags'));
 
     }
 
