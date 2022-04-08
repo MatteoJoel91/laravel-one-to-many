@@ -21,6 +21,29 @@
           </select>
         </div>
 
+        <label for="title" class="form-label">Tags</label>
+        <div class="d-flex">
+          @foreach ($tags as $tag)
+
+            @if ($errors->any())
+              <div class="form-check mb-3 mr-4">
+                <input class="form-check-input" name="tags[]" type="checkbox" id="tag_{{$tag->id}}" value={{$tag->id}} {{in_array($tag->id, old('tags', []))?'checked':''}}> 
+                <label class="form-check-label" for="tag_{{$tag->id}}">
+                  {{$tag->name}}
+                </label>
+              </div>
+
+            @else
+              <div class="form-check mb-3 mr-4">
+                <input class="form-check-input" name="tags[]" type="checkbox" id="tag_{{$tag->id}}" value={{$tag->id}} {{ ($post->tags->contains($tag)) ? 'checked' : ''}}> 
+                <label class="form-check-label" for="tag_{{$tag->id}}">
+                  {{$tag->name}}
+                </label>
+              </div>
+            @endif          
+          @endforeach
+        </div>
+
         <div class="mb-3">
           <label for="title" class="form-label">Titolo</label>
           <input type="title" class="form-control" id="title" name="title" value="{{old('title', $post->title)}}">

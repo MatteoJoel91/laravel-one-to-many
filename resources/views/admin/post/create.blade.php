@@ -9,7 +9,7 @@
 
         <div class="form-group mb-3">
           <label for="category_id">Categoria</label>
-          <select class="form-control" id="category_id" name="category_id" aria-label="Default select example">
+          <select class="form-control" id="category_id" name="category_id">
             <option value="category_id">Nessuna categoria</option>
             @foreach ($categories as $category)
                 <option {{old('category_id') == $category->id ? 'selected' : ''}} value="{{$category->id}}">{{$category->name}}</option>
@@ -17,16 +17,20 @@
           </select>
         </div>
 
-        @foreach ($tags as $tag)
-            <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
+        <label for="title" class="form-label">Tags</label>
+        <div class="d-flex">
+          @foreach ($tags as $tag)
+            <div class="form-check mb-3 mr-4">
+              {{-- name="tags[]" -> mi faccio passare un arrey tags con tutti i value che ho precedentemente selzionato, 
+              esempio: se ho selezionato pesce e carne dopo aver salvato mi passerà un arrey ['pesce', 'carne'] --}}
+              <input class="form-check-input" name="tags[]" type="checkbox" id="tag_{{$tag->id}}" value={{$tag->id}} {{in_array($tag->id, old('tags', []))?'checked':''}}> 
+              <label class="form-check-label" for="tag_{{$tag->id}}">
                 {{$tag->name}}
               </label>
-            </div>
-        @endforeach
+            </div>           
+          @endforeach
+        </div>
         
-
         <div class="mb-3">
           <label for="title" class="form-label">Titolo</label>
           <input type="title" class="form-control" id="title" name="title" value="{{old('title', '')}}">

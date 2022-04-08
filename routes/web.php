@@ -25,6 +25,8 @@ Route::middleware('auth')
 
     Route::resource('posts', 'PostController');
 
+    Route::resource('tags', 'TagController');
+
 });
 
 Route::get('{any?}', function(){

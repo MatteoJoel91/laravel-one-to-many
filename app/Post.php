@@ -13,4 +13,12 @@ class Post extends Model
         return $this->belongsTo('App\Category'); /* namespace App; in model Post.php e poi il nome del model in questo caso Category */
         
     }
+
+    // public function posts(){
+    //     return $this->belongsToMany('App\Post');
+    // }
+
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
 }
